@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=divice-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="src/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,21 +15,33 @@
   <body>
     <div class="weather-app">
       <header>
-        <form>
-          <input type="search" placeholder="Enter city..." />
-          <input type="submit" value="Search" />
+        <form class="search-form">
+          <input
+            type="search"
+            placeholder="Enter city..."
+            required
+            class="search-form-input"
+          />
+          <input type="submit" value="Search" class="search-form-button" />
         </form>
       </header>
-      <div>
-        <h1>Gothenburg</h1>
-        <p>
-          Friday 16:08, cloudy
-          <br />
-          Humidity: 60%, Wind: 3.13km/h
-        </p>
-      </div>
-      <div>☁️5°C</div>
-
+      <main>
+        <div class="weather-app-data">
+          <div>
+            <h1 class="weather-app-city">Gothenburg</h1>
+            <p class="weather-app-details">
+              Friday 16:08, cloudy
+              <br />
+              Humidity: <strong>60%</strong>, Wind: <strong>3.13km/h</strong>
+            </p>
+          </div>
+          <div class="weather-temp-container">
+            <div class="weather-emoji">☁️</div>
+            <div class="weather-app-temp">5</div>
+            <div class="weather-app-unit">°C</div>
+          </div>
+        </div>
+      </main>
       <footer>
         Coded by
         <a href="https://github.com/Lengi" target="_blank">Ellen G Olin</a>,
