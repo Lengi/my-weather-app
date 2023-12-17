@@ -78,3 +78,20 @@ footer {
   font-size: 13px;
   color: rgba(0, 0, 0, 0.6);
 }
+
+.weather-forecast {
+  margin: 20px;
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+}
+.weather-forecast-day {
+  font-size: 16px;
+  opacity: 0.6;
+}
+.weather-forecast-temp {
+  font-size: 13px;
+}
+.weather-forecast-temp-min {
+  opacity: 0.6;
+}
