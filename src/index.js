@@ -57,3 +57,33 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Gothenburg");
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      ` 
+      <div class="weather-forecast-day"> 
+        <div class="weather-forecast-date">${day}</div>
+        <div class="weather-forecast-icon"> 🌥️ </div>
+        <div class="weather-forecast-temp">
+          <span class="weather-forecast-temp-max">
+            <strong>15°</strong>
+          </span>
+          <span class="weather-forecast-temp-min">9°</span>
+         </div>
+      </div>
+
+    `;
+  });
+
+  forecastElement.innerHTML = forecastHtml;
+}
+
+displayForecast();
