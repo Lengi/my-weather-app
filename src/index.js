@@ -17,6 +17,8 @@ function refreshWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   windSpeedElement.innerHTML = `${response.data.wind.speed}km/h`;
   tempCurrentElement.innerHTML = Math.round(temp);
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -56,6 +58,13 @@ function handleSearchSubmit(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
 function getForecast(city) {
   let apiKey = "22f8da0004607a380oa863e4bc7fdtdd";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
@@ -66,30 +75,31 @@ function displayForecast(response) {
   console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-
   let forecastHtml = "";
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      ` 
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        ` 
       <div class="weather-forecast-day"> 
-        <div class="weather-forecast-date">${day}</div>
-        <div class="weather-forecast-icon"> 🌥️ </div>
+        <div class="weather-forecast-date">${formatDay(day.time)}</div> 
+        <img src="${day.condition.icon_url}" class="weather-forecast-icon" />
         <div class="weather-forecast-temp">
           <span class="weather-forecast-temp-max">
-            <strong>15°</strong>
+            <strong>${Math.round(day.temperature.maximum)}°</strong>
           </span>
-          <span class="weather-forecast-temp-min">9°</span>
+          <span class="weather-forecast-temp-min">${Math.round(
+            day.temperature.minimum
+          )}°</span>
          </div>
       </div>
 
     `;
+    }
   });
 
   forecastElement.innerHTML = forecastHtml;
 }
 
 searchCity("Gothenburg");
-getForecast("Gothenburg");
